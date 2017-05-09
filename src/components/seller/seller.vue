@@ -1,13 +1,13 @@
 <template>
-    <div class="header">
-        我是 header
+    <div class="seller">
+        seller content
     </div>
 </template>
 
 <script>
 export default {
 
-  name: 'header',
+  name: 'seller',
 
   data () {
     return {

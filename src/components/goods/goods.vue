@@ -1,13 +1,13 @@
 <template>
-    <div class="header">
-        我是 header
+    <div class="goods">
+        我是 goods
     </div>
 </template>
 
 <script>
 export default {
 
-  name: 'header',
+  name: 'goods',
 
   data () {
     return {
@@ -17,5 +17,5 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="css" scoped>
 </style>
