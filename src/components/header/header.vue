@@ -13,7 +13,8 @@
                     {{seller.description}}/{{seller.deliveryTime}}分钟送达
                 </div>
                 <div v-if="seller.supports" class="support">
-                    <div class="icon" :class="classMap[seller.supports[0].type]"></div>
+                    <!-- <div class="icon" :class="classMap[seller.supports[0].type]"></div> -->
+                    <icon_decrease :specialmap="seller.supports[0].type"></icon_decrease>
                     <div class="text">{{seller.supports[0].description}}</div>
                 </div>
             </div>
@@ -23,6 +24,8 @@
 </template>
 
 <script>
+import icon_decrease from "./icon_decrease/icon_decrease.vue";
+
 export default {
   name: 'header',
   props: {
@@ -30,8 +33,16 @@ export default {
         type: Object
     }
   },
+  components: {
+    icon_decrease
+  },
   created() {
-    this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee']
+    // this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee']
+  },
+  computed: {
+      classMap: function () {
+          return  ['decrease', 'discount', 'special', 'invoice', 'guarantee']
+      }
   }
 };
 </script>
