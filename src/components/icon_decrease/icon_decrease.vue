@@ -24,7 +24,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    @import '../../../common/all';
+    @import '../../common/all';
     .icon {
         display: inline-block;
         width: 12px;
