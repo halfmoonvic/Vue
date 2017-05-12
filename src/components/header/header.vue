@@ -18,8 +18,19 @@
                     <div class="text">{{seller.supports[0].description}}</div>
                 </div>
             </div>
+            <div v-if="seller.supports" class="support-count">
+                <div class="count">{{seller.supports.length}}个</div>
+                <i class="icon-keyboard_arrow_right"></i>
+            </div>
         </div>
-        <div class="bulletin-wrapper"></div>
+        <div class="bulletin-wrapper">
+            <span class="bulletin-title"></span>
+            <span class="bulletin-text">{{seller.bulletin}}</span>
+            <i class="icon-keyboard_arrow_right"></i>
+        </div>
+        <div class="background">
+            <img :src="seller.avatar">
+        </div>
     </div>
 </template>
 
@@ -51,9 +62,11 @@ export default {
 @import '../../common/all';
 
 .header {
+    position: relative;
     color: #fff;
-    background: #000;
+    background: $cl-base;
     .content-wrapper {
+        position: relative;
         padding: 24px 12px 18px 24px;
         @include flex(flex-start, flex-start);
         .avatar {
@@ -94,6 +107,60 @@ export default {
                     font-size: 12px;
                 }
             }
+        }
+        .support-count {
+            position: absolute;
+            right: 12px;
+            bottom: 18px;
+            @include flex();
+            padding: 0 8px;
+            height: 24px;
+            line-height: 24px;
+            border-radius: 14px;
+            background: rgba(0, 0, 0, .2);
+            text-align: center;
+            .count {
+                font-size: $fz-ss;
+            }
+        }
+    }
+    .bulletin-wrapper {
+        @include flex(space-between);
+        height: 28px;
+        line-height: 28px;
+        padding: 0 22px 0 12px;
+        background: $cl-base;
+        .bulletin-title {
+            flex: 0 0 22px;
+            width: 22px;
+            height: 12px;
+            @include bg-image("bulletin");
+            background-size: 22px 12px;
+            background-repeat: no-repeat;
+        }
+        .bulletin-text {
+            flex: 1 1 auto;
+            margin: 0 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: $fz-ss;
+        }
+        .icon-keyboard_arrow_right {
+            flex: 0 0 10px;
+            width: 10px;
+        }
+    }
+    .background {
+        position: absolute;
+        top: 0;
+        z-index: -1;
+        filter: blur(10px);
+        width: 100%;
+        height: 100%;
+        > img {
+            width: 100%;
+            height: 100%;
         }
     }
 }
