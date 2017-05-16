@@ -18,7 +18,7 @@
                     <div class="text">{{seller.supports[0].description}}</div>
                 </div>
             </div>
-            <div v-if="seller.supports" class="support-count">
+            <div v-if="seller.supports" class="support-count" @click="detailShowFn(true)">
                 <div class="count">{{seller.supports.length}}个</div>
                 <i class="icon-keyboard_arrow_right"></i>
             </div>
@@ -31,30 +31,45 @@
         <div class="background">
             <img :src="seller.avatar">
         </div>
+        <div v-show="detailShow" class="detail">
+            <div class="detail-wrapper">
+                <div class="detail-main">
+                    <h1 class="name">{{seller.name}}</h1>
+                    <star :size="48" :score="seller.score"></star>
+                </div>
+                <div class="detail-close" @click="detailShowFn(false)">
+                    <i class="icon-close"></i>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
 import icon_decrease from "../icon_decrease/icon_decrease.vue";
+import star from "../star/star.vue";
 
 export default {
-  name: 'header',
-  props: {
-    seller: {
-        type: Object
+    name: 'header',
+    props: {
+        seller: {
+            type: Object
+        }
+    },
+    data() {
+        return {
+            detailShow: false
+        }
+    },
+    components: {
+        icon_decrease,
+        star
+    },
+    methods: {
+        detailShowFn: function (flag) {
+            this.detailShow = flag;
+        }
     }
-  },
-  components: {
-    icon_decrease
-  },
-  created() {
-    // this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee']
-  },
-  computed: {
-      classMap: function () {
-          return  ['decrease', 'discount', 'special', 'invoice', 'guarantee']
-      }
-  }
 };
 </script>
 
@@ -161,6 +176,41 @@ export default {
         > img {
             width: 100%;
             height: 100%;
+        }
+    }
+    .detail {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 100;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        @include cl-base(.8);
+        .detail-wrapper {
+            position: relative;
+            width: 100%;
+            min-height: 100%;
+            padding: 64px 34px 0 34px;;
+            box-sizing: border-box;
+            .detail-main {
+                padding-bottom: 60px;
+                .name {
+                    text-align: center;
+                    font-size: $fz-md;
+                    line-height: $fz-md;
+                }
+            }
+            .detail-close {
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                height: 60px;
+                line-height: 60px;
+                text-align: center;
+                font-size: 32px;
+            }
         }
     }
 }
