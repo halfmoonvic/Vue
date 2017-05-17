@@ -31,11 +31,11 @@
         <div class="background">
             <img :src="seller.avatar">
         </div>
-        <div v-show="detailShow" class="detail">
+        <div v-show="detailShow" class="detail" v-if="seller.score">
             <div class="detail-wrapper">
                 <div class="detail-main">
                     <h1 class="name">{{seller.name}}</h1>
-                    <star :size="48" :score="seller.score"></star>
+                    <stars :size="48" :score="seller.score"></stars>
                 </div>
                 <div class="detail-close" @click="detailShowFn(false)">
                     <i class="icon-close"></i>
@@ -48,6 +48,7 @@
 <script>
 import icon_decrease from "../icon_decrease/icon_decrease.vue";
 import star from "../star/star.vue";
+import stars from "../stars/stars.vue"
 
 export default {
     name: 'header',
@@ -63,7 +64,8 @@ export default {
     },
     components: {
         icon_decrease,
-        star
+        star,
+        stars
     },
     methods: {
         detailShowFn: function (flag) {
