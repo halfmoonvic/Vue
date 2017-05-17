@@ -14,7 +14,7 @@
                 </div>
                 <div v-if="seller.supports" class="support">
                     <!-- <div class="icon" :class="classMap[seller.supports[0].type]"></div> -->
-                    <icon_decrease :specialmap="seller.supports[0].type"></icon_decrease>
+                    <classmap :count="seller.supports[0].type"></classmap>
                     <div class="text">{{seller.supports[0].description}}</div>
                 </div>
             </div>
@@ -31,11 +31,15 @@
         <div class="background">
             <img :src="seller.avatar">
         </div>
-        <div v-show="detailShow" class="detail" v-if="seller.score">
+        <div v-show="detailShow" class="detail">
             <div class="detail-wrapper">
                 <div class="detail-main">
                     <h1 class="name">{{seller.name}}</h1>
                     <stars :size="48" :score="seller.score"></stars>
+                    <v-title title="优惠信息"></v-title>
+                    <youhui :youhui="seller.supports"></youhui>
+                    <v-title title="商家公告"></v-title>
+                    <div>{{seller.bulletin}}</div>
                 </div>
                 <div class="detail-close" @click="detailShowFn(false)">
                     <i class="icon-close"></i>
@@ -47,8 +51,11 @@
 
 <script>
 import icon_decrease from "../icon_decrease/icon_decrease.vue";
+import classmap from "../classmap/classmap.vue";
 import star from "../star/star.vue";
 import stars from "../stars/stars.vue"
+import title from "../title/title.vue"
+import youhui from "../youhui/youhui.vue"
 
 export default {
     name: 'header',
@@ -65,7 +72,10 @@ export default {
     components: {
         icon_decrease,
         star,
-        stars
+        stars,
+        'v-title': title,
+        youhui,
+        classmap
     },
     methods: {
         detailShowFn: function (flag) {
@@ -201,6 +211,13 @@ export default {
                     text-align: center;
                     font-size: $fz-md;
                     line-height: $fz-md;
+                }
+                .stars {
+                    text-align: center;
+                    margin: 16px 0 28px;
+                }
+                .title {
+                    margin-bottom: 28px;
                 }
             }
             .detail-close {

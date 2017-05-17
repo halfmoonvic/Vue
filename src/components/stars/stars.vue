@@ -26,7 +26,7 @@ export default {
         }
     },
     created() {
-        console.log(this.scores);
+        // console.log(this.scores);
     },
     computed: {
         starType: function () {
