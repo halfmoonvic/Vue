@@ -31,21 +31,23 @@
         <div class="background">
             <img :src="seller.avatar">
         </div>
-        <div v-show="detailShow" class="detail">
-            <div class="detail-wrapper">
-                <div class="detail-main">
-                    <h1 class="name">{{seller.name}}</h1>
-                    <stars :size="48" :score="seller.score"></stars>
-                    <v-title title="优惠信息"></v-title>
-                    <youhui :youhui="seller.supports"></youhui>
-                    <v-title title="商家公告"></v-title>
-                    <div>{{seller.bulletin}}</div>
-                </div>
-                <div class="detail-close" @click="detailShowFn(false)">
-                    <i class="icon-close"></i>
+        <transition name="fade">
+            <div v-show="detailShow" class="detail">
+                <div class="detail-wrapper">
+                    <div class="detail-main">
+                        <h1 class="name">{{seller.name}}</h1>
+                        <stars :size="48" :score="seller.score"></stars>
+                        <v-title title="优惠信息"></v-title>
+                        <youhui :youhui="seller.supports"></youhui>
+                        <v-title title="商家公告"></v-title>
+                        <div class="bulletin-ct">{{seller.bulletin}}</div>
+                    </div>
+                    <div class="detail-close" @click="detailShowFn(false)">
+                        <i class="icon-close"></i>
+                    </div>
                 </div>
             </div>
-        </div>
+        </transition>
     </div>
 </template>
 
@@ -219,6 +221,9 @@ export default {
                 .title {
                     margin-bottom: 28px;
                 }
+                .bulletin-ct {
+                    line-height: 2;
+                }
             }
             .detail-close {
                 position: absolute;
@@ -232,6 +237,14 @@ export default {
             }
         }
     }
+}
+
+.fade-enter-active, .fade-leave-active {
+    transition: all .3s
+}
+.fade-enter, .fade-leave-active {
+    transform: translate(50px, 100px);
+    opacity: 0
 }
 
 </style>
