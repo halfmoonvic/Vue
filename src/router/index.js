@@ -5,6 +5,7 @@ import goods from '@/components/goods/goods'
 import ratings from '@/components/ratings/ratings'
 import seller from '@/components/seller/seller'
 import parents from '@/components/parents_component/parents_component'
+import father from '@/components/father/father.vue'
 
 Vue.use(Router);
 
@@ -27,6 +28,14 @@ const routes = [{
         path: '/parents',
         name: 'parents',
         component: parents
+    },
+    {
+        path: '/father',
+        name: 'father',
+        component: father,
+        meta: {
+          keepAlive: true
+        }
     }
 ];
 

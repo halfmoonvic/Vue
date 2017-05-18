@@ -14,6 +14,9 @@
             <div class="tab-item">
                 <router-link to="/parents">父组件</router-link>
             </div>
+            <div class="tab-item">
+                <router-link to="/father">同级组件传值</router-link>
+            </div>
         </div>
         <router-view></router-view>
     </div>
@@ -62,7 +65,7 @@
     line-height: 40px;
     @include bd-1px($cl-base);
     .tab-item {
-        flex: 1;
+        flex: 1 1 auto;
         text-align: center;
         > a {
             display: block;
