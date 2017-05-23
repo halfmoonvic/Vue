@@ -12,29 +12,36 @@ Vue.use(Router);
 const routes = [{
         path: '/goods',
         name: 'goods',
-        component: goods
+        components: {
+            test: goods
+        }
     },
     {
         path: '/ratings',
         name: 'ratings',
-        component: ratings
+        components: {
+            test: ratings
+        }
     },
     {
         path: '/seller',
         name: 'seller',
-        component: seller
+        components: {
+            test: seller
+        }
     },
     {
         path: '/parents',
         name: 'parents',
-        component: parents
+        components: {
+            test: parents
+        }
     },
     {
         path: '/father',
         name: 'father',
-        component: father,
-        meta: {
-          keepAlive: true
+        components: {
+            test: father
         }
     }
 ];

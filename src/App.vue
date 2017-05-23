@@ -18,7 +18,7 @@
                 <router-link to="/father">同级组件传值</router-link>
             </div>
         </div>
-        <router-view></router-view>
+        <router-view name="test"></router-view>
     </div>
 </template>
 
